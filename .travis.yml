@@ -6,4 +6,6 @@ android:
     - build-tools-28.0.3
     - android-28
     - extra
-script: bash gradlew test
+
+script:
+  bash gradlew test ktlintCheck
