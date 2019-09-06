@@ -1,0 +1,1 @@
+- [meta][Joan] Add jacoco test coverage reports to travis
