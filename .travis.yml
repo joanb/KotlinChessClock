@@ -8,4 +8,4 @@ android:
     - extra
 
 script:
-  bash gradlew test ktlintCheck
+  bash gradlew jacocoTestReport ktlintCheck

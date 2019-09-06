@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'jacoco-android'
+
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -19,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
 }
 
@@ -31,5 +37,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:3.0.0"
     androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
 }
