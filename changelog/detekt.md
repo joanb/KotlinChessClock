@@ -1,0 +1,1 @@
+- [meta][Joan] Add travis checks to project
