@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':clocks'
 rootProject.name='Chess Clock'
