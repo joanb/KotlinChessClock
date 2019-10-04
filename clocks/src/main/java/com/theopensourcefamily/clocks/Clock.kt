@@ -1,27 +1,17 @@
 package com.theopensourcefamily.clocks
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
 import java.util.concurrent.TimeUnit
 
-class Clock {
+class Clock(private val scheduler: Scheduler) {
 
-  companion object {
-
-    var whites = true
-
-    fun getWhites() = Observable
-      .interval(1, TimeUnit.MILLISECONDS)
-      .filter { whites }
-      .filter { it.toLong() % 1000 == 0L }
-      .doOnNext { print("WHITES: $it") }
-
-    fun getBlacks() = Observable
-      .interval(1, TimeUnit.MILLISECONDS)
-      .filter { !whites }
-      .filter { it.toLong() % 1000 == 0L }
-      .doOnNext { print("BLACKS: $it") }
-  }
-
-  fun pause() {}
-  fun start() {}
+  fun getClockObservable(): Observable<Long> = Observable
+    .interval(INIT_DELAY, PERIOD, TimeUnit.MILLISECONDS, scheduler)
+    .filter { it.toLong() % WINDOW == ZERO }
 }
+
+const val INIT_DELAY = 10L
+const val PERIOD = 1L
+const val WINDOW = 10L
+const val ZERO = 0L
