@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     @get:Rule
-    var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
+    var activityRule: ActivityTestRule<ClocksActivity> = ActivityTestRule(ClocksActivity::class.java)
 
     fun runOnUIThread(block: () -> Unit) {
         activityRule.runOnUiThread(block)

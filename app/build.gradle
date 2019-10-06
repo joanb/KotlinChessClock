@@ -4,9 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'jacoco-android'
-
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -45,13 +42,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
-}
-
-
-jacoco {
-    toolVersion = "0.8.3"
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
 }
