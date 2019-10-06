@@ -8,6 +8,6 @@ android:
     - extra
 
 script:
-  bash gradlew jacocoTestReport ktlintCheck detekt
+  bash gradlew jacocoTestReportDebug jacocoTestReport ktlintCheck detekt
 after_success:
   bash <(curl -s https://codecov.io/bash)
