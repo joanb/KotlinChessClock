@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.activity_clocks.*
 
 class ClocksActivity : AppCompatActivity(), GameView {
 
-  val presenter = GamePresenter() //maybe DI here, with koin or wathever
+  val presenter = GamePresenter() // maybe DI here, with koin or wathever
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
