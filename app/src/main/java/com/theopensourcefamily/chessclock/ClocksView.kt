@@ -1,3 +1,3 @@
 package com.theopensourcefamily.chessclock
 
-interface GameView
+interface ClocksView
