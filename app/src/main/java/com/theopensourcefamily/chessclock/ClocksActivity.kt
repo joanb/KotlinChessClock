@@ -23,7 +23,11 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
     presenter.bindView(this)
   }
 
-  fun render() {
+  override fun onDestroy() {
+    super.onDestroy()
+    presenter.unbind()
+  }
+  override fun render() {
     // Just to put something in the clocks right now
     whiteClock.text = "5:00"
     blackClock.text = "5:00"
