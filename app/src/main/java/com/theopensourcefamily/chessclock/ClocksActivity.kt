@@ -2,11 +2,19 @@ package com.theopensourcefamily.chessclock
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jakewharton.rxbinding3.view.clicks
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_clocks.*
 
 class ClocksActivity : AppCompatActivity(), ClocksView {
 
   val presenter = ClocksPresenter() // maybe DI here, with koin or wathever
+
+  override val userInteractions: Observable<ClocksView.Interaction>
+    get() = Observable.merge(
+      blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
+      whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
+    )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
