@@ -1,5 +1,5 @@
 # ChessClock
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Build Status](https://travis-ci.com/joanb/KotlinChessClock.svg?branch=master)](https://travis-ci.com/joanb/KotlinChessClock)
@@ -16,6 +16,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/SergiLlamasGuerrero"><img src="https://avatars3.githubusercontent.com/u/20481281?v=4" width="100px;" alt="SergiLlamasGuerrero"/><br /><sub><b>SergiLlamasGuerrero</b></sub></a><br /><a href="https://github.com/joanb/KotlinChessClock/commits?author=SergiLlamasGuerrero" title="Code">💻</a> <a href="#review-SergiLlamasGuerrero" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/jalalkhademi"><img src="https://avatars3.githubusercontent.com/u/1236342?v=4" width="100px;" alt="Jalal"/><br /><sub><b>Jalal</b></sub></a><br /><a href="https://github.com/joanb/KotlinChessClock/commits?author=jalalkhademi" title="Code">💻</a></td>
   </tr>
 </table>
 
