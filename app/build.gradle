@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,6 +16,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +45,10 @@ dependencies {
     implementation 'com.jakewharton.rxbinding3:rxbinding-core:3.0.0'
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
 
+    // dagger
+    kapt "com.google.dagger:dagger-compiler:2.17"
+    implementation "com.google.dagger:dagger:2.17"
+
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:3.0.0"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
@@ -49,3 +60,4 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 }
+
