@@ -1,8 +1,9 @@
 package com.theopensourcefamily.chessclock
 
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class ClocksPresenter {
+class ClocksPresenter @Inject constructor() {
 
   private lateinit var view: ClocksView
   private val disposables = CompositeDisposable()
