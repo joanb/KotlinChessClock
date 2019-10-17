@@ -1,6 +1,6 @@
 package com.theopensourcefamily.clocks
 
-import io.reactivex.rxjava3.schedulers.TestScheduler
+import io.reactivex.schedulers.TestScheduler
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.hasSize
 import org.junit.Test
