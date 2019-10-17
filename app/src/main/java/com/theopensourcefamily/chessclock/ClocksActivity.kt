@@ -16,8 +16,7 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
 
   val presenter = DaggerClockPresenterFactory.create().clockPresenter()
 
-  override val userInteractions: Observable<ClocksView.Interaction>
-    get() = Observable.merge(
+  override val userInteractions: Observable<ClocksView.Interaction> = Observable.merge(
       blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
       whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
     )
