@@ -6,6 +6,8 @@ interface ClocksView {
 
   val userInteractions: Observable<Interaction>
 
+  val currentState: ClockState
+
   fun render()
 
   sealed class Interaction {

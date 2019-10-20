@@ -14,13 +14,16 @@ interface ClockPresenterFactory {
 
 class ClocksActivity : AppCompatActivity(), ClocksView {
 
-  val presenter = DaggerClockPresenterFactory.create().clockPresenter()
+  private val presenter = DaggerClockPresenterFactory.create().clockPresenter()
 
   override val userInteractions: Observable<ClocksView.Interaction>
     get() = Observable.merge(
       blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
       whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
     )
+
+  override val currentState: ClockState
+    get() = TODO("not implemented")
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -35,7 +38,10 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
   }
   override fun render() {
     // Just to put something in the clocks right now
-    whiteClock.text = "5:00"
-    blackClock.text = "5:00"
+    when(currentState) {
+      Stopped -> {}
+      WhiteRunning -> {}
+      BlackRunning -> {}
+    }
   }
 }
