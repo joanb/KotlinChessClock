@@ -22,9 +22,6 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
       whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
     )
 
-  override val currentState: ClockState
-    get() = TODO("not implemented")
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_clocks)
@@ -36,12 +33,21 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
     super.onDestroy()
     presenter.unbind()
   }
-  override fun render() {
+
+  override fun render(state: ClockState) {
     // Just to put something in the clocks right now
-    when(currentState) {
-      Stopped -> {}
-      WhiteRunning -> {}
-      BlackRunning -> {}
+    when (state) {
+      Stopped -> { }
+      WhiteRunning -> decreaseWhiteChrono()
+      BlackRunning -> decreaseBlackChrono()
     }
+  }
+
+  private fun decreaseWhiteChrono() {
+    // get white current time (parsed in mm:ss) and decrease un second if it's greater than 00:00
+  }
+
+  private fun decreaseBlackChrono() {
+    // get black current time (parsed in mm:ss) and decrease un second if it's greater than 00:00
   }
 }
