@@ -2,31 +2,34 @@ package com.theopensourcefamily.chessclock
 
 import com.jakewharton.rxrelay2.PublishRelay
 import com.jakewharton.rxrelay2.Relay
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.*
+import com.theopensourcefamily.clocks.Clock
+import io.reactivex.Observable
 import org.junit.After
 import org.junit.Test
 
 class ClocksPresenterTest {
-  private val interactions: Relay<ClocksView.Interaction> = PublishRelay.create<ClocksView.Interaction>()
+  private val interactions: Relay<ClocksView.Interaction> =
+    PublishRelay.create<ClocksView.Interaction>()
   private val view: ClocksView = mock {
     on { userInteractions } doReturn (interactions)
   }
 
-  private val presenter = ClocksPresenter()
+  private val clock: Clock = mock {
+    on { getClockObservable(any()) } doReturn Observable.just(1L)
+  }
+
+  private val presenter = ClocksPresenter(clock)
 
   @After
   fun tearDown() {
     verifyNoMoreInteractions(view)
   }
-
   @Test
-  fun bindView() {
+  fun startsWithStoppedState() {
     presenter.bindView(view)
 
     verify(view).userInteractions
-    interactions.test().assertSubscribed()
+    verify(view).render(Stopped)
   }
 }

@@ -6,7 +6,7 @@ interface ClocksView {
 
   val userInteractions: Observable<Interaction>
 
-  fun render()
+  fun render(state: ClockState)
 
   sealed class Interaction {
     object BlackPressed : Interaction()

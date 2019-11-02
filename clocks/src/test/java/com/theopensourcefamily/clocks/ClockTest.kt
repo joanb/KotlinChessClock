@@ -12,7 +12,7 @@ internal class ClockTest {
 
   @Test
   fun clockShouldNotEmitAtStart() {
-    val observer = Clock(testScheduler).getClockObservable().test()
+    val observer = Clock().getClockObservable(testScheduler).test()
 
     testScheduler.advanceTimeBy(9, TimeUnit.MILLISECONDS)
 
@@ -21,7 +21,7 @@ internal class ClockTest {
 
   @Test
   fun clockEmitsEvery10Millis() {
-    val observer = Clock(testScheduler).getClockObservable().test()
+    val observer = Clock().getClockObservable(testScheduler).test()
 
     testScheduler.advanceTimeBy(20, TimeUnit.MILLISECONDS)
     val values = observer.values()
