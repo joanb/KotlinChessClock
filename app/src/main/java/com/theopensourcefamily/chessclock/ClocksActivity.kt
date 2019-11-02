@@ -17,9 +17,9 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
   val presenter = DaggerClockPresenterFactory.create().clockPresenter()
 
   override val userInteractions: Observable<ClocksView.Interaction> = Observable.merge(
-      blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
-      whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
-    )
+    blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
+    whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
+  )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -32,7 +32,8 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
     super.onDestroy()
     presenter.unbind()
   }
-  override fun render() {
+
+  override fun render(state: ClockState) {
     // Just to put something in the clocks right now
     whiteClock.text = "5:00"
     blackClock.text = "5:00"

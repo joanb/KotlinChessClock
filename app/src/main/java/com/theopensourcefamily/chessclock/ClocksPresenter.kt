@@ -1,9 +1,13 @@
 package com.theopensourcefamily.chessclock
 
+import com.theopensourcefamily.clocks.Clock
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class ClocksPresenter @Inject constructor() {
+class ClocksPresenter @Inject constructor(
+  private val clock: Clock
+) {
 
   private lateinit var view: ClocksView
   private val disposables = CompositeDisposable()
@@ -15,6 +19,15 @@ class ClocksPresenter @Inject constructor() {
         .subscribe(
           { /* TODO */ },
           { throw Exception() }
+        )
+    )
+
+    disposables.add(
+      Observable.just(Stopped)
+        .subscribe(
+          view::render,
+          { /* TODO */},
+          { /* TODO */}
         )
     )
   }
