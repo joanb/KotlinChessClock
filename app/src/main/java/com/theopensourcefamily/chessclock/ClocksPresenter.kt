@@ -26,6 +26,7 @@ class ClocksPresenter @Inject constructor(
           when (interaction) {
             ClocksView.Interaction.WhitePressed -> WhiteRunning
             ClocksView.Interaction.BlackPressed -> BlackRunning
+            ClocksView.Interaction.StopPressed -> Stopped
           }
         }
         .startWith(Stopped)

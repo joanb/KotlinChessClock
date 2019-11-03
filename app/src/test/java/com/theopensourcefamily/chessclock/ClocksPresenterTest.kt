@@ -28,13 +28,14 @@ class ClocksPresenterTest {
 
   @After
   fun tearDown() {
-    verifyNoMoreInteractions(view)
+    verifyNoMoreInteractions(view, clock)
   }
   @Before
   fun startsWithStoppedState() {
     presenter.bindView(view)
 
     verify(view).userInteractions
+    verify(clock).getClockObservable()
     verify(view).render(Stopped)
   }
 
@@ -52,5 +53,13 @@ class ClocksPresenterTest {
     clockObservable.accept(1L)
 
     verify(view).render(WhiteRunning)
+  }
+
+  @Test
+  fun renderStopWhenStopPressed() {
+    interactions.accept(ClocksView.Interaction.StopPressed)
+    clockObservable.accept(1L)
+
+    verify(view, times(2)).render(Stopped)
   }
 }
