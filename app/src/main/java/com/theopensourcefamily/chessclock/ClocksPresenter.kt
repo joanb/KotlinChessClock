@@ -1,8 +1,8 @@
 package com.theopensourcefamily.chessclock
 
 import com.theopensourcefamily.clocks.Clock
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class ClocksPresenter @Inject constructor(
@@ -14,20 +14,25 @@ class ClocksPresenter @Inject constructor(
 
   fun bindView(view: ClocksView) {
     this.view = view
-    disposables.add(
-      view.userInteractions
-        .subscribe(
-          { /* TODO */ },
-          { throw Exception() }
-        )
-    )
 
     disposables.add(
-      Observable.just(Stopped)
+      clock.getClockObservable()
+        .withLatestFrom(
+          view.userInteractions,
+          BiFunction { clock: Long, interaction: ClocksView.Interaction ->
+            interaction
+          })
+        .map { interaction: ClocksView.Interaction ->
+          when (interaction) {
+            ClocksView.Interaction.WhitePressed -> WhiteRunning
+            ClocksView.Interaction.BlackPressed -> BlackRunning
+          }
+        }
+        .startWith(Stopped)
         .subscribe(
           view::render,
-          { /* TODO */},
-          { /* TODO */}
+          { throw RuntimeException(it) },
+          { throw RuntimeException() }
         )
     )
   }
