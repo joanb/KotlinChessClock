@@ -48,7 +48,6 @@ class ClocksPresenter @Inject constructor(
     )
   }
 
-
   fun unbind() {
     disposables.dispose()
   }

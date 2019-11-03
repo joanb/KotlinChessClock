@@ -16,7 +16,6 @@ class ClocksPresenterTest {
   private val clockObservable: Relay<Long> =
     PublishRelay.create<Long>()
 
-
   private val view: ClocksView = mock {
     on { userInteractions } doReturn (interactions)
   }
@@ -40,7 +39,7 @@ class ClocksPresenterTest {
 
     verify(view).userInteractions
     verify(clock).getClockObservable()
-    verify(view).render(ClockState.Stopped(30000, 30000)) //initial value
+    verify(view).render(ClockState.Stopped(30000, 30000))
   }
 
   @Test
