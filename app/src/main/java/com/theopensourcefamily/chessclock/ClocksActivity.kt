@@ -4,12 +4,24 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding3.view.clicks
 import dagger.Component
+import dagger.Module
+import dagger.Provides
 import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_clocks.*
+import javax.inject.Named
 
-@Component
+@Component(modules = [ClockPresenterFactory.MainModule::class])
 interface ClockPresenterFactory {
   fun clockPresenter(): ClocksPresenter
+
+  @Module
+  class MainModule {
+    @Provides
+    @Named("mainScheduler")
+    fun providesMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
+  }
 }
 
 class ClocksActivity : AppCompatActivity(), ClocksView {

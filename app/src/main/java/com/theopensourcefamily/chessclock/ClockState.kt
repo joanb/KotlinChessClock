@@ -1,6 +1,10 @@
 package com.theopensourcefamily.chessclock
 
-sealed class ClockState
-object Stopped : ClockState()
-object WhiteRunning : ClockState()
-object BlackRunning : ClockState()
+sealed class ClockState {
+  abstract val whitesTime: Long
+  abstract val blacksTime: Long
+
+  data class Stopped(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
+  data class WhiteRunning(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
+  data class BlackRunning(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
+}
