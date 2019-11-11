@@ -66,13 +66,38 @@ class ClocksPresenterTest {
     clockObservable.accept(1L)
 
     verify(view).render(ClockState.WhiteRunning(29999, 30000))
-    verify(view).render(ClockState.Stopped(29999, 30000
-    ))
+    verify(view).render(
+      ClockState.Stopped(
+        29999, 30000
+      )
+    )
   }
 
   @Test
   fun shouldNotEmitSameState() {
     interactions.accept(ClocksView.Interaction.StopPressed)
     clockObservable.accept(1L)
+  }
+
+  @Test
+  fun shouldEmitGameOver() {
+    interactions.accept(ClocksView.Interaction.BlackPressed)
+    for (ignore in 1..30002) {
+      clockObservable.accept(1L)
+    }
+
+    verify(view, times(30002)).render(any())
+    verify(view).render(ClockState.GameOver(0L, 30000L))
+  }
+
+  @Test
+  fun shouldEmitGameOverOnlyOnce() {
+    interactions.accept(ClocksView.Interaction.BlackPressed)
+    for (ignore in 1..30010) {
+      clockObservable.accept(1L)
+    }
+
+    verify(view, times(30002)).render(any())
+    verify(view).render(ClockState.GameOver(0L, 30000L))
   }
 }
