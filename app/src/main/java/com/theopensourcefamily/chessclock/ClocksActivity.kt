@@ -47,6 +47,9 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
   }
 
   override fun render(state: ClockState) {
+    when (state) {
+      is ClockState.GameOver -> { /* Add notification method here */ }
+    }
     whiteClock.text = state.whitesTime.toString()
     blackClock.text = state.blacksTime.toString()
   }
