@@ -29,13 +29,17 @@ class ClocksPresenter @Inject constructor(
         .scan<ClockState>(
           ClockState.Stopped(30000, 30000),
           { previousState: ClockState, lastInteraction: ClocksView.Interaction ->
-            when (lastInteraction) {
-              ClocksView.Interaction.WhitePressed ->
-                ClockState.BlackRunning(previousState.whitesTime, previousState.blacksTime - 1)
-              ClocksView.Interaction.BlackPressed ->
-                ClockState.WhiteRunning(previousState.whitesTime - 1, previousState.blacksTime)
-              ClocksView.Interaction.StopPressed ->
-                ClockState.Stopped(previousState.whitesTime, previousState.blacksTime)
+            if (previousState.blacksTime == 0L || previousState.whitesTime == 0L) {
+              ClockState.GameOver(previousState.whitesTime, previousState.blacksTime)
+            } else {
+              when (lastInteraction) {
+                ClocksView.Interaction.WhitePressed ->
+                  ClockState.BlackRunning(previousState.whitesTime, previousState.blacksTime - 1)
+                ClocksView.Interaction.BlackPressed ->
+                  ClockState.WhiteRunning(previousState.whitesTime - 1, previousState.blacksTime)
+                ClocksView.Interaction.StopPressed ->
+                  ClockState.Stopped(previousState.whitesTime, previousState.blacksTime)
+              }
             }
           })
         .distinctUntilChanged()
