@@ -7,4 +7,5 @@ sealed class ClockState {
   data class Stopped(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
   data class WhiteRunning(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
   data class BlackRunning(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
+  data class GameOver(override val whitesTime: Long, override val blacksTime: Long) : ClockState()
 }
