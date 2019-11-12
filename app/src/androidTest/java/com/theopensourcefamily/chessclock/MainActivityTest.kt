@@ -14,19 +14,19 @@ import org.junit.runner.RunWith
 @LargeTest
 class MainActivityTest {
 
-    @get:Rule
-    var activityRule: ActivityTestRule<ClocksActivity> = ActivityTestRule(ClocksActivity::class.java)
+  @get:Rule
+  var activityRule: ActivityTestRule<ClocksActivity> = ActivityTestRule(ClocksActivity::class.java)
 
-    fun runOnUIThread(block: () -> Unit) {
-        activityRule.runOnUiThread(block)
-    }
+  fun runOnUIThread(block: () -> Unit) {
+    activityRule.runOnUiThread(block)
+  }
 
-    @Test
-    fun showClocks() {
-        runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300)) }
-        onView(withId(R.id.blackClock)).check(matches(isDisplayed()))
-        onView(withId(R.id.blackClock)).check(matches(withText("300")))
-        onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
-        onView(withId(R.id.whiteClock)).check(matches(withText("300")))
-    }
+  @Test
+  fun showClocks() {
+    runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300)) }
+    onView(withId(R.id.blackClock)).check(matches(isDisplayed()))
+    onView(withId(R.id.blackClock)).check(matches(withText("300")))
+    onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
+    onView(withId(R.id.whiteClock)).check(matches(withText("300")))
+  }
 }
