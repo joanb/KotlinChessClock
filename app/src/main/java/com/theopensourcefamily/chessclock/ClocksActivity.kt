@@ -1,6 +1,9 @@
 package com.theopensourcefamily.chessclock
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding3.view.clicks
 import dagger.Component
@@ -48,7 +51,12 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
 
   override fun render(state: ClockState) {
     when (state) {
-      is ClockState.GameOver -> { /* Add notification method here */ }
+      is ClockState.GameOver -> {
+        if (state.whitesTime == 0L) whiteClock.setBackgroundColor(Color.RED)
+        else if (state.blacksTime == 0L) blackClock.setBackgroundColor(Color.RED)
+        else throw Exception("One of the clocks should be at 0 time")
+        (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(200)
+      }
     }
     whiteClock.text = state.whitesTime.toString()
     blackClock.text = state.blacksTime.toString()
