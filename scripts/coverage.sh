@@ -4,4 +4,4 @@ set -e
 
 ./gradlew clean jacocoTestReportDebug jacocoTestReport &&
  ./gradlew mergeJacocoReports jacocoTestReportMerged &&
-  open build/reports/jacoco/index.htm
+  open build/reports/jacoco/index.html

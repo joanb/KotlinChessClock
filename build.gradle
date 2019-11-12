@@ -50,6 +50,21 @@ allprojects {
         filters = ".*/resources/.*,.*/build/.*"
     }
 
+    junitJacoco {
+        excludes = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*Activity*.*',
+            '**/*_MembersInjector.*',
+            '**/*Dagger*Component*.*',
+            '**/**Factory*.*'
+        ]
+    }
+
     allOpen {
         annotation('com.theopensourcefamily.clocks.Mockable')
     }
