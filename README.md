@@ -15,7 +15,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/SergiLlamasGuerrero"><img src="https://avatars3.githubusercontent.com/u/20481281?v=4" width="100px;" alt="SergiLlamasGuerrero"/><br /><sub><b>SergiLlamasGuerrero</b></sub></a><br /><a href="https://github.com/joanb/KotlinChessClock/commits?author=SergiLlamasGuerrero" title="Code">💻</a> <a href="#review-SergiLlamasGuerrero" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/SergiLlamasGuerrero"><img src="https://avatars3.githubusercontent.com/u/20481281?v=4" width="100px;" alt="SergiLlamasGuerrero"/><br /><sub><b>SergiLlamasGuerrero</b></sub></a><br /><a href="https://github.com/joanb/KotlinChessClock/commits?author=SergiLlamasGuerrero" title="Code">💻</a> <a href="#review-SergiLlamasGuerrero" title="Reviewed Pull Requests">👀</a> <a href="#ideas-SergiLlamasGuerrero" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/jalalkhademi"><img src="https://avatars3.githubusercontent.com/u/1236342?v=4" width="100px;" alt="Jalal"/><br /><sub><b>Jalal</b></sub></a><br /><a href="https://github.com/joanb/KotlinChessClock/commits?author=jalalkhademi" title="Code">💻</a></td>
   </tr>
 </table>
