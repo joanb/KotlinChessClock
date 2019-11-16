@@ -29,4 +29,9 @@ class MainActivityTest {
     onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
     onView(withId(R.id.whiteClock)).check(matches(withText("00:03")))
   }
+
+  @Test
+  fun showPauseButton() {
+    onView(withId(R.id.pauseButton)).check(matches(isDisplayed()))
+  }
 }
