@@ -30,12 +30,13 @@ interface ClockPresenterFactory {
 
 class ClocksActivity : AppCompatActivity(), ClocksView {
 
-  val presenter = DaggerClockPresenterFactory.create().clockPresenter()
+  private val presenter = DaggerClockPresenterFactory.create().clockPresenter()
 
   override val userInteractions: Observable<ClocksView.Interaction>
     get() = Observable.merge(
       blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
-      whiteClock.clicks().map { ClocksView.Interaction.WhitePressed }
+      whiteClock.clicks().map { ClocksView.Interaction.WhitePressed },
+      pauseButton.clicks().map { ClocksView.Interaction.StopPressed }
     )
 
   override fun onCreate(savedInstanceState: Bundle?) {
