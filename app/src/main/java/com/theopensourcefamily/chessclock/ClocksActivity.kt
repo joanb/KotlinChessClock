@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding3.view.clicks
+import com.theopensourcefamily.chessclock.extensions.centisecondsToHumanFriendlyTime
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -54,11 +55,11 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
       is ClockState.GameOver -> {
         if (state.whitesTime == 0L) whiteClock.setBackgroundColor(Color.RED)
         else if (state.blacksTime == 0L) blackClock.setBackgroundColor(Color.RED)
-        else throw Exception("One of the clocks should be at 0 time")
+        else throw RuntimeException("One of the clocks should be at 0 time")
         (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(200)
       }
     }
-    whiteClock.text = state.whitesTime.toString()
-    blackClock.text = state.blacksTime.toString()
+    whiteClock.text = state.whitesTime.centisecondsToHumanFriendlyTime()
+    blackClock.text = state.blacksTime.centisecondsToHumanFriendlyTime()
   }
 }
