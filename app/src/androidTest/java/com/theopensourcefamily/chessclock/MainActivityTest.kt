@@ -25,8 +25,8 @@ class MainActivityTest {
   fun showClocks() {
     runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300)) }
     onView(withId(R.id.blackClock)).check(matches(isDisplayed()))
-    onView(withId(R.id.blackClock)).check(matches(withText("300")))
+    onView(withId(R.id.blackClock)).check(matches(withText("00:03")))
     onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
-    onView(withId(R.id.whiteClock)).check(matches(withText("300")))
+    onView(withId(R.id.whiteClock)).check(matches(withText("00:03")))
   }
 }
