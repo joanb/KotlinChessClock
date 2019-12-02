@@ -12,6 +12,8 @@
         android:layout_height="0dp"
         android:background="@color/darkish"
         android:gravity="center"
+        android:lines="1"
+        android:padding="32dp"
         android:rotation="180"
         android:text="Hello World!"
         android:textColor="@color/ivory"
@@ -24,8 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:lines="1"
-        android:padding="32dp"
         tools:text="5:00" />
 
     <TextView
@@ -34,6 +34,8 @@
         android:layout_height="0dp"
         android:background="@color/ivory"
         android:gravity="center"
+        android:lines="1"
+        android:padding="32dp"
         android:textColor="@color/darkish"
         android:textSize="30sp"
         app:autoSizeMaxTextSize="100sp"
@@ -44,19 +46,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackClock"
-        android:lines="1"
-        android:padding="32dp"
         tools:text="5:00" />
 
     <ImageButton
         android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_media_pause"
         android:backgroundTint="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@+id/blackClock"
+        android:src="@android:drawable/ic_media_pause"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/blackClock"
+        app:layout_constraintEnd_toEndOf="@+id/blackClock"
         app:layout_constraintStart_toStartOf="@+id/blackClock"
-        app:layout_constraintEnd_toEndOf="@+id/blackClock"/>
+        app:layout_constraintTop_toBottomOf="@+id/blackClock" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

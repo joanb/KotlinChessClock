@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Vibrator
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding3.view.clicks
 import com.theopensourcefamily.chessclock.extensions.centisecondsToHumanFriendlyTime
@@ -53,14 +55,21 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
 
   override fun render(state: ClockState) {
     when (state) {
-      is ClockState.GameOver -> {
-        if (state.whitesTime == 0L) whiteClock.setBackgroundColor(Color.RED)
-        else if (state.blacksTime == 0L) blackClock.setBackgroundColor(Color.RED)
-        else throw RuntimeException("One of the clocks should be at 0 time")
-        (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(200)
-      }
+      is ClockState.GameOver -> gameOverState(state)
+      is ClockState.WhiteRunning, is ClockState.BlackRunning -> pauseButton.visibility = VISIBLE
+      is ClockState.Stopped -> pauseButton.visibility = GONE
     }
     whiteClock.text = state.whitesTime.centisecondsToHumanFriendlyTime()
     blackClock.text = state.blacksTime.centisecondsToHumanFriendlyTime()
+  }
+
+  private fun gameOverState(state: ClockState) {
+    pauseButton.visibility = GONE
+    when {
+      state.whitesTime == 0L -> whiteClock.setBackgroundColor(Color.RED)
+      state.blacksTime == 0L -> blackClock.setBackgroundColor(Color.RED)
+      else -> throw RuntimeException("One of the clocks should be at 0 time")
+    }
+    (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(200)
   }
 }

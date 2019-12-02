@@ -6,6 +6,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
+import org.hamcrest.CoreMatchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,10 +29,14 @@ class MainActivityTest {
     onView(withId(R.id.blackClock)).check(matches(withText("00:03")))
     onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
     onView(withId(R.id.whiteClock)).check(matches(withText("00:03")))
+    onView(withId(R.id.pauseButton)).check(matches(not(isDisplayed())))
   }
 
   @Test
-  fun showPauseButton() {
+  fun runningState() {
+    runOnUIThread { activityRule.activity.render(ClockState.WhiteRunning(300, 300)) }
+    onView(withId(R.id.pauseButton)).check(matches(isDisplayed()))
+    runOnUIThread { activityRule.activity.render(ClockState.BlackRunning(300, 300)) }
     onView(withId(R.id.pauseButton)).check(matches(isDisplayed()))
   }
 }
