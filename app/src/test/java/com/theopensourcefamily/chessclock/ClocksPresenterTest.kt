@@ -106,4 +106,18 @@ class ClocksPresenterTest {
     verify(view, times(30002)).render(any())
     verify(view).render(ClockState.GameOver(0L, 30000L))
   }
+
+  @Test
+  fun shouldResetClocks() {
+    interactions.accept(ClocksView.Interaction.WhitePressed)
+    clockObservable.accept(1L)
+    interactions.accept(ClocksView.Interaction.BlackPressed)
+    clockObservable.accept(1L)
+
+    verify(view).render(ClockState.BlackRunning(30000, 29999))
+    verify(view).render(ClockState.WhiteRunning(29999, 29999))
+
+    interactions.accept(ClocksView.Interaction.ResetPressed)
+    verify(view).render(ClockState.Stopped(30000, 30000, false))
+  }
 }
