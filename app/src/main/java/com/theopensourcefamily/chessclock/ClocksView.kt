@@ -12,5 +12,6 @@ interface ClocksView {
     object BlackPressed : Interaction()
     object WhitePressed : Interaction()
     object StopPressed : Interaction()
+    object ResetPressed : Interaction()
   }
 }

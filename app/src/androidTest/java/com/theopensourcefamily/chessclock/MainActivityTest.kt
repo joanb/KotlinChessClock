@@ -24,12 +24,13 @@ class MainActivityTest {
 
   @Test
   fun showClocks() {
-    runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300)) }
+    runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300, false)) }
     onView(withId(R.id.blackClock)).check(matches(isDisplayed()))
     onView(withId(R.id.blackClock)).check(matches(withText("00:03")))
     onView(withId(R.id.whiteClock)).check(matches(isDisplayed()))
     onView(withId(R.id.whiteClock)).check(matches(withText("00:03")))
     onView(withId(R.id.pauseButton)).check(matches(not(isDisplayed())))
+    onView(withId(R.id.resetButton)).check(matches(not(isDisplayed())))
   }
 
   @Test
@@ -38,5 +39,12 @@ class MainActivityTest {
     onView(withId(R.id.pauseButton)).check(matches(isDisplayed()))
     runOnUIThread { activityRule.activity.render(ClockState.BlackRunning(300, 300)) }
     onView(withId(R.id.pauseButton)).check(matches(isDisplayed()))
+    onView(withId(R.id.resetButton)).check(matches(not(isDisplayed())))
+  }
+
+  @Test
+  fun pausedAndCanReset() {
+    runOnUIThread { activityRule.activity.render(ClockState.Stopped(300, 300, true)) }
+    onView(withId(R.id.resetButton)).check(matches(isDisplayed()))
   }
 }
