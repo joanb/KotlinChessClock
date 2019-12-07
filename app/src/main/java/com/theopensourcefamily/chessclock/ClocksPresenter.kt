@@ -30,23 +30,31 @@ class ClocksPresenter(
         .scan<ClockState>(
           ClockState.Stopped(whitesTime, blacksTime, canReset = false),
           { previousState: ClockState, lastInteraction: ClocksView.Interaction ->
-            if (previousState.blacksTime == 0L || previousState.whitesTime == 0L) {
-              ClockState.GameOver(previousState.whitesTime, previousState.blacksTime)
-            } else {
-              when (lastInteraction) {
-                ClocksView.Interaction.WhitePressed ->
-                  ClockState.BlackRunning(previousState.whitesTime, previousState.blacksTime - 1)
-                ClocksView.Interaction.BlackPressed ->
-                  ClockState.WhiteRunning(previousState.whitesTime - 1, previousState.blacksTime)
-                ClocksView.Interaction.StopPressed ->
-                  ClockState.Stopped(
-                    previousState.whitesTime,
-                    previousState.blacksTime,
-                    canReset = true
-                  )
-                ClocksView.Interaction.ResetPressed ->
-                  ClockState.Stopped(whitesTime, blacksTime, canReset = false)
+            when (lastInteraction) {
+              ClocksView.Interaction.WhitePressed -> {
+                if (previousState.blacksTime == 0L || previousState.whitesTime == 0L) {
+                  ClockState.GameOver(previousState.whitesTime, previousState.blacksTime)
+                } else ClockState.BlackRunning(
+                  previousState.whitesTime,
+                  previousState.blacksTime - 1
+                )
               }
+              ClocksView.Interaction.BlackPressed -> {
+                if (previousState.blacksTime == 0L || previousState.whitesTime == 0L) {
+                  ClockState.GameOver(previousState.whitesTime, previousState.blacksTime)
+                } else ClockState.WhiteRunning(
+                  previousState.whitesTime - 1,
+                  previousState.blacksTime
+                )
+              }
+              ClocksView.Interaction.StopPressed ->
+                ClockState.Stopped(
+                  previousState.whitesTime,
+                  previousState.blacksTime,
+                  canReset = true
+                )
+              ClocksView.Interaction.ResetPressed ->
+                ClockState.Stopped(whitesTime, blacksTime, canReset = false)
             }
           })
         .distinctUntilChanged()
