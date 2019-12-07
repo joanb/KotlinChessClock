@@ -9,6 +9,7 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.jakewharton.rxbinding3.view.clicks
+import com.jakewharton.rxbinding3.view.touches
 import com.theopensourcefamily.chessclock.extensions.centisecondsToHumanFriendlyTime
 import com.theopensourcefamily.clocks.Clock
 import io.reactivex.Observable
@@ -22,8 +23,8 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
 
   override val userInteractions: Observable<ClocksView.Interaction>
     get() = Observable.merge(
-      blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
-      whiteClock.clicks().map { ClocksView.Interaction.WhitePressed },
+      blackClock.touches().map { ClocksView.Interaction.BlackPressed },
+      whiteClock.touches().map { ClocksView.Interaction.WhitePressed },
       pauseButton.clicks().map { ClocksView.Interaction.StopPressed },
       resetButton.clicks().map { ClocksView.Interaction.ResetPressed }
     )
