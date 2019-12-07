@@ -48,12 +48,13 @@
         app:layout_constraintTop_toBottomOf="@+id/blackClock"
         tools:text="5:00" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded"
         android:backgroundTint="@color/colorAccent"
-        android:src="@android:drawable/ic_media_pause"
+        android:src="@drawable/ic_pause"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/blackClock"
         app:layout_constraintEnd_toEndOf="@+id/blackClock"
@@ -61,15 +62,19 @@
         app:layout_constraintTop_toBottomOf="@+id/blackClock"
         tools:visibility="visible" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/resetButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded"
         android:backgroundTint="@color/colorAccent"
+        android:padding="4dp"
         android:src="@drawable/ic_reset"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/blackClock"
         app:layout_constraintEnd_toEndOf="@+id/blackClock"
         app:layout_constraintStart_toStartOf="@+id/blackClock"
-        app:layout_constraintTop_toBottomOf="@+id/blackClock" />
+        app:layout_constraintTop_toBottomOf="@+id/blackClock"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
