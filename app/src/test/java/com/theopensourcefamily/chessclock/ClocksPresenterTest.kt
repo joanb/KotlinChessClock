@@ -39,7 +39,7 @@ class ClocksPresenterTest {
 
     verify(view).userInteractions
     verify(clock).getClockObservable()
-    verify(view).render(ClockState.Stopped(30000, 30000))
+    verify(view).render(ClockState.Stopped(30000, 30000, false))
   }
 
   @Test
@@ -68,7 +68,7 @@ class ClocksPresenterTest {
     verify(view).render(ClockState.WhiteRunning(29999, 30000))
     verify(view).render(
       ClockState.Stopped(
-        29999, 30000
+        29999, 30000, true
       )
     )
   }
@@ -77,6 +77,12 @@ class ClocksPresenterTest {
   fun shouldNotEmitSameState() {
     interactions.accept(ClocksView.Interaction.StopPressed)
     clockObservable.accept(1L)
+
+    verify(view).render(
+      ClockState.Stopped(
+        30000, 30000, true
+      )
+    )
   }
 
   @Test

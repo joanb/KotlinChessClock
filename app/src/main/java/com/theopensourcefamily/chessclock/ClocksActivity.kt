@@ -23,7 +23,8 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
     get() = Observable.merge(
       blackClock.clicks().map { ClocksView.Interaction.BlackPressed },
       whiteClock.clicks().map { ClocksView.Interaction.WhitePressed },
-      pauseButton.clicks().map { ClocksView.Interaction.StopPressed }
+      pauseButton.clicks().map { ClocksView.Interaction.StopPressed },
+      resetButton.clicks().map { ClocksView.Interaction.ResetPressed }
     )
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,15 +42,26 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
   override fun render(state: ClockState) {
     when (state) {
       is ClockState.GameOver -> gameOverState(state)
-      is ClockState.WhiteRunning, is ClockState.BlackRunning -> pauseButton.visibility = VISIBLE
-      is ClockState.Stopped -> pauseButton.visibility = GONE
+      is ClockState.WhiteRunning, is ClockState.BlackRunning -> runningState()
+      is ClockState.Stopped -> stoppedState(state)
     }
     whiteClock.text = state.whitesTime.centisecondsToHumanFriendlyTime()
     blackClock.text = state.blacksTime.centisecondsToHumanFriendlyTime()
   }
 
+  private fun runningState() {
+    pauseButton.visibility = VISIBLE
+    resetButton.visibility = GONE
+  }
+
+  private fun stoppedState(state: ClockState.Stopped) {
+    pauseButton.visibility = GONE
+    if (state.canReset) resetButton.visibility = VISIBLE else resetButton.visibility = GONE
+  }
+
   private fun gameOverState(state: ClockState) {
     pauseButton.visibility = GONE
+    resetButton.visibility = VISIBLE
     when {
       state.whitesTime == 0L -> whiteClock.setBackgroundColor(Color.RED)
       state.blacksTime == 0L -> blackClock.setBackgroundColor(Color.RED)
