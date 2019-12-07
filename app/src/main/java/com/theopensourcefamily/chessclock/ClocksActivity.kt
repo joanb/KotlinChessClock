@@ -7,6 +7,7 @@ import android.os.Vibrator
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.jakewharton.rxbinding3.view.clicks
 import com.theopensourcefamily.chessclock.extensions.centisecondsToHumanFriendlyTime
 import com.theopensourcefamily.clocks.Clock
@@ -56,6 +57,8 @@ class ClocksActivity : AppCompatActivity(), ClocksView {
 
   private fun stoppedState(state: ClockState.Stopped) {
     pauseButton.visibility = GONE
+    whiteClock.setBackgroundColor(ContextCompat.getColor(this, R.color.ivory))
+    blackClock.setBackgroundColor(ContextCompat.getColor(this, R.color.darkish))
     if (state.canReset) resetButton.visibility = VISIBLE else resetButton.visibility = GONE
   }
 
