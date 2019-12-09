@@ -24,11 +24,21 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "helbaroudy",
+      "name": "Hussein Kasem",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/810241?v=4",
+      "profile": "https://github.com/helbaroudy",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "KotlinChessClock",
   "projectOwner": "joanb",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
