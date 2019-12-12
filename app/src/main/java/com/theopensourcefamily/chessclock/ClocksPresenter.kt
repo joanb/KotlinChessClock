@@ -2,15 +2,12 @@ package com.theopensourcefamily.chessclock
 
 import com.theopensourcefamily.clocks.Clock
 import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import javax.inject.Inject
-import javax.inject.Named
 
-class ClocksPresenter @Inject constructor(
+class ClocksPresenter(
   private val clock: Clock,
-  @Named("mainScheduler") private val scheduler: Scheduler = AndroidSchedulers.mainThread()
+  private val scheduler: Scheduler
 ) {
 
   private lateinit var view: ClocksView
