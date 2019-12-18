@@ -10,4 +10,4 @@ val schedulers = module {
 
 }
 
-fun provideMainScheduler(): Scheduler? = AndroidSchedulers.mainThread()
+fun provideMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
