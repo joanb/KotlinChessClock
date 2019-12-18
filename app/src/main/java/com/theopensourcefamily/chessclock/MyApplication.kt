@@ -16,8 +16,6 @@ class MyApplication : Application() {
       androidContext(this@MyApplication)
 
       modules(listOf(presenter, schedulers))
-
     }
   }
-
 }
