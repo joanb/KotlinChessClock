@@ -58,10 +58,7 @@ allprojects {
             '**/Manifest*.*',
             '**/*Test*.*',
             'android/**/*.*',
-            '**/*Activity*.*',
-            '**/*_MembersInjector.*',
-            '**/*Dagger*Component*.*',
-            '**/**Factory*.*'
+            '**/*Activity*.*'
         ]
     }
 
