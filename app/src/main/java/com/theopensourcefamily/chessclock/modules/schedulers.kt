@@ -6,8 +6,6 @@ import org.koin.dsl.module
 
 val schedulers = module {
 
-  single { provideMainScheduler() }
+  single { AndroidSchedulers.mainThread() }
 
 }
-
-fun provideMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
