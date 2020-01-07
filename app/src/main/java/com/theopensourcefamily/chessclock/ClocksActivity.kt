@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_clocks.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-
 class ClocksActivity : AppCompatActivity(), ClocksView {
 
   private val presenter: ClocksPresenter by inject { parametersOf(Clock()) }
