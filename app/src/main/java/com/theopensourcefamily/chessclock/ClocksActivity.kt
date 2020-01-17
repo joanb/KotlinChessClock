@@ -9,30 +9,15 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding3.view.clicks
 import com.theopensourcefamily.chessclock.extensions.centisecondsToHumanFriendlyTime
-import dagger.Component
-import dagger.Module
-import dagger.Provides
+import com.theopensourcefamily.clocks.Clock
 import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_clocks.*
-import javax.inject.Named
-
-@Component(modules = [ClockPresenterFactory.MainModule::class])
-interface ClockPresenterFactory {
-  fun clockPresenter(): ClocksPresenter
-
-  @Module
-  class MainModule {
-    @Provides
-    @Named("mainScheduler")
-    fun providesMainScheduler(): Scheduler = AndroidSchedulers.mainThread()
-  }
-}
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class ClocksActivity : AppCompatActivity(), ClocksView {
 
-  private val presenter = DaggerClockPresenterFactory.create().clockPresenter()
+  private val presenter: ClocksPresenter by inject { parametersOf(Clock()) }
 
   override val userInteractions: Observable<ClocksView.Interaction>
     get() = Observable.merge(
