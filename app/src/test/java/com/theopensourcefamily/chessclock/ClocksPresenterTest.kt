@@ -86,7 +86,7 @@ class ClocksPresenterTest {
   }
 
   @Test
-  fun shouldEmitGameOver() {
+  fun shouldEmitGameOverForBlacks() {
     interactions.accept(ClocksView.Interaction.BlackPressed)
     for (ignore in 1..30002) {
       clockObservable.accept(1L)
@@ -94,6 +94,17 @@ class ClocksPresenterTest {
 
     verify(view, times(30002)).render(any())
     verify(view).render(ClockState.GameOver(0L, 30000L))
+  }
+
+  @Test
+  fun shouldEmitGameOverForWhites() {
+    interactions.accept(ClocksView.Interaction.WhitePressed)
+    for (ignore in 1..30002) {
+      clockObservable.accept(1L)
+    }
+
+    verify(view, times(30002)).render(any())
+    verify(view).render(ClockState.GameOver(30000L, 0L))
   }
 
   @Test
